@@ -8,33 +8,7 @@ import matplotlib.pyplot as plt
 from components.income_df import income_data_editor 
 from components.expenses_df import expenses_data_editor
 
-# def get_table_download_link(df, filename):
-#     """Generates a link allowing the data in a given pandas dataframe to be downloaded
-#     in:  dataframe
-#     out: download link
-#     """
-#     csv = df.to_csv(index=False)
-#     b64 = base64.b64encode(csv.encode()).decode()  # some strings <-> bytes conversions necessary here
-#     href = f'<a href="data:file/csv;base64,{b64}" download="{filename}.csv">Download {filename} as CSV</a>'
-#     return href
 
-# def create_pdf():
-#     c = canvas.Canvas("BudgetReport.pdf", pagesize=letter)
-#     width, height = letter
-
-#     # Add images
-#     c.drawImage('piechart.png', 0, height - 400, 400, 400)  # pie chart
-#     c.drawImage('df_income.png', 0, height - 800, 400, 400)  # income data
-#     c.drawImage('df_expenses.png', 0, height - 1200, 400, 400)  # expenses data
-
-#     # Add some text data
-#     c.drawString(0, height - 1220, "Total Income: $" + str(total_income))
-#     c.drawString(0, height - 1240, "Total Expenses: $" + str(total_expenses))
-#     c.drawString(0, height - 1260, "Disposable Income: $" + str(disposable_income))
-#     c.drawString(0, height - 1280, "Monthly Marketing Budget: $" + str(monthly_marketing_budget))
-#     c.drawString(0, height - 1300, "Daily Budget: $" + str(daily_budget))
-
-#     c.save()
 def budget():
     # st.markdown('<style> .css-ue6h4q { color: green; }.css-16idsys p </style>', unsafe_allow_html=True)
     st.set_page_config(
@@ -102,8 +76,7 @@ def budget():
             st.header('Monthly Marketing Budget')
             st.write(f'Monthly Marketing Budget: ${monthly_marketing_budget:,.2f}')
             st.write(f'Daily Budget: ${daily_budget:,.2f}')
-            if st.button('Generate Report'):
-                create_pdf()
+           
 
     else:
         st.error('You have no money too spend on ads, get a job!')
