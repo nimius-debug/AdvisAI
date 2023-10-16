@@ -11,13 +11,14 @@ def income_data_editor():
     return st.data_editor(
             income_data_frame(),
             column_config={
-            "Amount": st.column_config.NumberColumn(
-                "Amount(USD)",
-                help="The Amount of Income in USD",
-                format="$%d",
-            )
-        },
+                "Amount": st.column_config.NumberColumn(
+                    "Amount(USD)",
+                    help="The Amount of Income in USD",
+                    format="$%d",
+                    )   
+            },
             height=300,
             hide_index=True,
             num_rows="dynamic",
+            use_container_width=True,
         )

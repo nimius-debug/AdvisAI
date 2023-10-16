@@ -43,21 +43,22 @@ def expenses_data_frame():
 
 def expenses_data_editor():
     return st.data_editor(
-            expenses_data_frame(),
-            column_config = {
-                "Category": st.column_config.SelectboxColumn(
-                    "Expense Category",
-                    help="Select the expense category",
-                    width="medium",
-                    options=["GIVING", "INCOME TAXES", "HOUSING", "AUTO", "GROCERY", "HEALTHCARE", "OTHER"],
-                ),
-                "Amount": st.column_config.NumberColumn(
-                "Amount(USD)",
-                help="The Amount of Income in USD",
-                format="$%d",
-                )
-            },
-            height=300,
-            hide_index=True,
-            num_rows="dynamic",
-        )
+        expenses_data_frame(),
+        column_config = {
+            "Category": st.column_config.SelectboxColumn(
+                "Expense Category",
+                help="Select the expense category",
+                width="medium",
+                options=["GIVING", "INCOME TAXES", "HOUSING", "AUTO", "GROCERY", "HEALTHCARE", "OTHER"],
+            ),
+            "Amount": st.column_config.NumberColumn(
+            "Amount(USD)",
+            help="The Amount of Income in USD",
+            format="$%d",
+            )
+        },
+        height=300,
+        hide_index=True,
+        num_rows="dynamic",
+        use_container_width=True,
+    )

@@ -1,5 +1,4 @@
 import streamlit as st
-import pandas as pd
 import matplotlib.pyplot as plt
 # import base64
 # from reportlab.lib.pagesizes import letter
@@ -10,41 +9,20 @@ from components.expenses_df import expenses_data_editor
 
 
 def budget():
-    # st.markdown('<style> .css-ue6h4q { color: green; }.css-16idsys p </style>', unsafe_allow_html=True)
-    st.set_page_config(
-        page_title="JAG ToolBox",
-        page_icon=':rocket:',
-        layout="wide",
-        initial_sidebar_state="expanded",
-        menu_items={
-            'Get Help': 'mailto:jag.solutionshub@gmail.com',
-            'Report a bug': "mailto:jag.solutionshub@gmail.com",
-            'About': "Welcome to your Marketer ToolBox!. \
-                The Marketer Toolbox is a comprehensive suite of tools designed to assist marketers in managing and\
-                optimizing their marketing efforts. It provides a range of functionalities and features to streamline \
-                marketing tasks, track performance, and make data-driven decisions. Whether you're a digital marketer,\
-                brand manager, or marketing strategist, the Marketer Toolbox offers a set of essential tools to enhance\
-                your marketing campaigns and drive better results."
-        }
-    )
-    with st.sidebar:
-        st.write('## JAG ToolBox')
-    
-    st.title('Monthly Marketing Budget Calculator')
-    # col1, col2 = st.columns(2,gap="large")
-    # with col1:
-    st.header('Monthly Income and Expenses')
-    
+    st.header('Ads Budget')
+    st.write('Add your monthly income and expenses to calculate your marketing ads budget.')
+    st.caption('(credits Ray Kakuda -> Fullstaq Marketer Monthly Marketing Budget Sheet)')
+    st.markdown("""---""")
     #****************************income ********************************************************************************
-    col1, col2 = st.columns(2,gap="small")
+    col1, col2 = st.columns([1, 1], gap="large")
     with col1:
-        st.subheader('Income')
+        st.subheader('Monthly Income')
         df_in_editor = income_data_editor()
         print(df_in_editor)
     #****************************expenses ********************************************************************************
     
     with col2:
-        st.subheader('Expenses')
+        st.subheader('Monthly Expenses')
         df_exp = expenses_data_editor()
         
     st.markdown("""---""")
@@ -61,7 +39,7 @@ def budget():
         ax1.pie(amount, explode=explode, labels=labels, autopct=lambda p: '{:.0f}'.format(p * sum(amount) / 100),
                 shadow=True, startangle=90)
         ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
-        plt.savefig('piechart.png')
+        # plt.savefig('piechart.png')
         pie_col, breakdown_col = st.columns([1, 1],gap="large")
         with pie_col:
             st.pyplot(fig1)
@@ -77,10 +55,7 @@ def budget():
             st.write(f'Monthly Marketing Budget: ${monthly_marketing_budget:,.2f}')
             st.write(f'Daily Budget: ${daily_budget:,.2f}')
            
-
     else:
-        st.error('You have no money too spend on ads, get a job!')
+        st.error('You have no money too spend on ads, consider getting a job!')
     # combine the income and expenses dataframes into one for the report
-   
-if __name__ == '__main__':
-    budget()
+ 
