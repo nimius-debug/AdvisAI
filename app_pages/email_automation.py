@@ -63,12 +63,12 @@ def email_automation():
     coln1, coln2 = st.columns(2)
     with coln1:
         with st.expander(":email: GetResponse"):
-            GET_RESPONSE = st.text_input("Enter your GETRESPONSE API KEY here: ", value=st.secrets['GET_RESPONSE'])
+            GET_RESPONSE = st.text_input("Enter your GETRESPONSE API KEY here: ", value="Coming Soon")
             # GR_key_message = "GetResponse key was accepted!"
             # st.write(GR_key_message)
     with coln2:
         with st.expander(":brain: OpenAI"):
-            OPEN_AI = st.text_input("Enter your OPENAI API KEY here: ", value=st.secrets['OPENAI_API_KEY'])
+            OPEN_AI = st.text_input("Enter your OPENAI API KEY here: ", value="Coming Soon")
             openai.api_key = OPEN_AI
         model_id = 'gpt-3.5-turbo'
         #AI_key_message = "Open AI key was accepted!"
