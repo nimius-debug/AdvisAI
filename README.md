@@ -1,6 +1,6 @@
-# AdvisAI
+# NexaStack
 
-AdvisAI is an AI-driven tool designed to assist marketers with precision budgeting and streamlined email automation.
+NexaStack is an AI-driven tool designed to assist marketers with precision budgeting and streamlined email automation.
 
 ## Features
 
