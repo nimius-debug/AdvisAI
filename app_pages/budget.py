@@ -25,10 +25,13 @@ def budget():
         st.subheader('Monthly Expenses')
         df_exp = expenses_data_editor()
         
-    st.markdown("""---""")
+    #****************************budget ********************************************************************************
+    st.header('Ads Budget - Breakdown')
+    st.divider()
+    
+    #****************************pie chart ********************************************************************************
     total_income = df_in_editor["Amount"].sum()
     total_expenses = df_exp["Amount"].sum()
-    
     disposable_income = total_income - total_expenses
     
     if disposable_income > 0:
@@ -41,21 +44,25 @@ def budget():
         ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
         # plt.savefig('piechart.png')
         pie_col, breakdown_col = st.columns([1, 1],gap="large")
+       
+    #****************************display pie ********************************************************************************
         with pie_col:
-            st.pyplot(fig1)
+            st.pyplot(fig1,use_container_width=True)
             marketing_budget_percent = st.slider('Percent of Disposable Income for Marketing',format="%d%%", min_value=0, max_value=1, value=100, step=1, key='marketing_budget_percent')
             monthly_marketing_budget = disposable_income * marketing_budget_percent/100
             daily_budget = monthly_marketing_budget / 30
+    
+    #****************************display breakdown ********************************************************************************
         with breakdown_col:
-            st.header('TOTAL BREAKDOWN')
-            st.write(f'Total Income: ${total_income:,.2f}')
-            st.write(f'Total Expenses: ${total_expenses:,.2f}')
-            st.write(f'Disposable Income: ${disposable_income:,.2f}')
-            st.header('Monthly Marketing Budget')
-            st.write(f'Monthly Marketing Budget: ${monthly_marketing_budget:,.2f}')
-            st.write(f'Daily Budget: ${daily_budget:,.2f}')
+            st.subheader(f'Total Income: ----> :blue[ ${total_income:,.2f}]')
+            st.subheader(f'Total Expenses:----> :orange[ ${total_expenses:,.2f}]')
+            st.subheader(f'Disposable Income:----> :green[${disposable_income:,.2f}]')
+            st.divider()
+            
+            st.subheader(f'Monthly Marketing Budget: ${monthly_marketing_budget:,.2f}')
+            st.subheader(f'Daily Ads Budget: ${daily_budget:,.2f}')
            
     else:
-        st.error('You have no money too spend on ads, consider getting a job!')
+        st.warning('You have no money too spend on ads, consider getting a job!')
     # combine the income and expenses dataframes into one for the report
  

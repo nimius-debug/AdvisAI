@@ -1,6 +1,7 @@
 import streamlit as st
 from components.page_settings import horizontal_menu,display_logo,footer
 from app_pages.budget import budget
+from app_pages.email_automation import email_automation
 ###################################################page config###############################################
 
 st.set_page_config(
@@ -31,6 +32,8 @@ def main():
         
     if selected == "Ads Budget":
         budget()
+    elif selected == "Automation Agent":
+        email_automation()
         
         
     
