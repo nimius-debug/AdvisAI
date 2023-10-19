@@ -1,7 +1,7 @@
 import streamlit as st
 import openai
 from pytrends.request import TrendReq
-from components.trends import get_realtime_trends, get_x_trends
+from components.trends import get_realtime_trends, get_x_trends, AI_analyze_trends
 from styles.style_components import style_google_trends
 
 @st.cache_data(show_spinner=False)
@@ -20,7 +20,7 @@ def split_cards(trends: list, start_idx: int, end_idx: int)-> None:
 
 def email_automation():
     style_google_trends()
-    st.header(":chart_with_upwards_trend: Trendy :red[ Zone] - power by Google Trends ")
+    st.header(":chart_with_upwards_trend: Trendy :red[ Zone] ")
     
     # Display trends for the current page
     trends = get_realtime_trends()
@@ -28,21 +28,18 @@ def email_automation():
     
     col1, col2 = st.columns(2, gap="large")
     with col1:
+        st.markdown("##### Top real-time searches on X(Twitter))")
         st.dataframe(xtrends, use_container_width=True, height=600)
-
-    # 
 
     # Display trends for the current page
     with col2:
+        st.markdown("##### Top real-time searches on Google Trends (US)")
         cards_per_page = 8
         total_pages = (
             int(len(trends) / cards_per_page) if int(len(trends) / cards_per_page) > 0 else 1
         )
 
-        
-        pagination_column = st.columns((1, 5))
-        with pagination_column[0]:
-            current_page = st.number_input(
+        current_page = st.number_input(
             "Page", min_value=1, max_value=total_pages, step=1
         )
             
@@ -52,11 +49,18 @@ def email_automation():
         split_cards(trends, start_idx, end_idx)
         # Set up pagination outside the if btn_trends block
         st.markdown(f"Page **{current_page}** of **{total_pages}** ")
-            
-    
-
         
-    st.write('power by Google Trends')
+    st.write('power by Google Trends & X(Twitter)')
+    st.divider()
+    st.markdown("### :robot_face: Let :red[AI Analyze] the trends for you!")
+    st.markdown("The AI analyzes trends from GoogleTrends and Twitter, providing top topics to keep your audience engaged.")
+    ai_analize = st.button("Analyze")
+    list_xtrends = xtrends.values.tolist()
+   
+    if ai_analize:
+        list_xtrends = xtrends.values.tolist()
+        AI_analyze_trends(list_xtrends, trends)
+    
     st.divider()
     
     st.header("Integration")

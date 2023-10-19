@@ -1,5 +1,4 @@
 import streamlit as st
-import streamlit.components.v1 as components
 from components.page_settings import horizontal_menu,display_logo,footer
 from components.forms import get_response_jscomponent
 from app_pages.budget import budget
@@ -41,11 +40,6 @@ def main():
         budget()
     elif selected == "Automation Agent":
         email_automation()
-        
-    form_string = '''
-            <getresponse-form form-id="2e25b3e9-ac3f-4ee7-9ddb-b37f0ce217db" e="1"></getresponse-form>
-         '''
-    components.html(form_string, height=100)    
     
 if __name__ == "__main__":
     main()

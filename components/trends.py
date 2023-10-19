@@ -8,8 +8,7 @@ import streamlit as st
 from langchain.chat_models import ChatOpenAI
 from langchain.prompts import HumanMessagePromptTemplate
 from langchain.schema.messages import SystemMessage
-from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
-
+from langchain.callbacks import StreamlitCallbackHandler
 
 
 @st.cache_resource(ttl=60*60*2)
@@ -52,24 +51,32 @@ def get_realtime_trends() -> list:
 
 
 
+@st.cache_data(ttl=60*60*2)
+def AI_analyze_trends(xtrends: list, gtrends:list):
+    st_callback = StreamlitCallbackHandler(st.container())
+    llm = ChatOpenAI(openai_api_key=st.secrets['OPENAI_API_KEY'],streaming=True, callbacks=[st_callback], temperature=0,model='gpt-4')
+    chat_template = ChatPromptTemplate.from_messages(
+    [
+        SystemMessage(
+            content=(
+                "You are a world-class trending topic analyst with access to data from Google Trends and Twitter. "
+                "For the Twitter data, each entry consists of the topic name, volume of search, and category. "
+                "The Google Trends data provides a list of what people are currently searching for, with the order indicating the ranking of searches. "
+                "Your task is to analyze these datasets and identify the top 5 most trending topics or categories. "
+                "Consider overlaps, search volumes, and the context behind each trend. "
+                "Provide a concise analysis suitable for an email or post focusing on today's trends. "
+                "For instance, if 'AI Technology' is trending on both lists, it might be a significant topic to cover. "
+                "Additionally, if a topic like 'Politics' is frequently appearing, it indicates heightened interest in political events."
+            )
+        ),
+        HumanMessagePromptTemplate.from_template("Google Trends data {list1}"),  # Google Trends data
+        HumanMessagePromptTemplate.from_template("Twitter data {list2}"),  # Twitter data
+    ]
+)
 
-# chat_template = ChatPromptTemplate.from_messages(
-#     [
-#         SystemMessage(
-#             content=(
-#                 "You are an world class trending topic analyst.\
-#                 You are asked to analyze the current trending list from Google Trends from most search to least ,\
-#                 and based on the data and what people are searching you are going to analize and find the top 3\
-#                 most trending topics/categories to write about in an email that should focus on what is trendy today based on the data.\    "
-               
-#             )
-#         ),
-#         HumanMessagePromptTemplate.from_template("{list}"),
-#     ]
-# )
 
-# llm = ChatOpenAI(openai_api_key=st.secrets['OPENAI_API_KEY'],streaming=True, callbacks=[StreamingStdOutCallbackHandler()], temperature=0,model='gpt-4')
-# response = llm(chat_template.format_messages(list=trends))
+    response = llm(chat_template.format_messages(list1=gtrends, list2=xtrends))
+    
 
 
 # Fetch trending topics

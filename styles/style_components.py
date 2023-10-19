@@ -15,7 +15,7 @@ def style_google_trends():
                 margin-bottom: 10px;
                 font-family: serif;
                 color: white;
-                font-size: 1.3rem;
+                font-size: 1.1rem;
                 display: inline-block;
             }
             
