@@ -52,7 +52,7 @@ def expenses_data_editor():
                 options=["GIVING", "INCOME TAXES", "HOUSING", "AUTO", "GROCERY", "HEALTHCARE", "OTHER"],
             ),
             "Amount": st.column_config.NumberColumn(
-            "Amount(USD)",
+            "(USD)",
             help="The Amount of Income in USD",
             format="$%d",
             )

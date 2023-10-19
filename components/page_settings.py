@@ -99,7 +99,7 @@ def footer():
 
         #page-container {
             position: relative;
-            min-height: 10vh;
+            min-height: 18vh;
         }
 
         footer{
@@ -108,9 +108,8 @@ def footer():
 
         .footer {
             font-size: 1rem; /* equals 14px */
-            position: relative;
-            left: 0;
-            top:300px;
+            position: absolute;
+         
             bottom: 0;
             width: 100%;
             background-color: transparent;
@@ -118,12 +117,20 @@ def footer():
             text-align: center; /* you can replace 'left' with 'center' or 'right' if you want*/
         }
     </style>
-
-    <div id="page-container">
+    
+   
+    
+    <div id="page-container"> 
+        <div align=center>
+            <small>
+                <h3>Page visitors <h3> <img src="https://www.cutercounter.com/hits.php?id=hrvxoafkq&nd=5&style=47" border="0" alt="hit counter"></a> <br>
+            </small>
+        </div>
         <div class="footer">
             <p style='font-size: 0.875em;'>Made with <img src="https://em-content.zobj.net/source/skype/289/red-heart_2764-fe0f.png" alt="heart" height= "10"/><a style='display: inline; text-align: left;' href="https://github.com/nimius-debug" target="_blank"> by Jorge A Gil</a></p>
         </div>
     </div>
+    
     """
     st.markdown(ft,unsafe_allow_html=True)
 #########################logo#########################

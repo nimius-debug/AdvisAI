@@ -12,7 +12,7 @@ def income_data_editor():
             income_data_frame(),
             column_config={
                 "Amount": st.column_config.NumberColumn(
-                    "Amount(USD)",
+                    "(USD)",
                     help="The Amount of Income in USD",
                     format="$%d",
                     )   

@@ -14,11 +14,11 @@ def budget():
     st.caption('(credits Ray Kakuda -> Fullstaq Marketer Monthly Marketing Budget Sheet)')
     st.markdown("""---""")
     #****************************income ********************************************************************************
-    col1, col2 = st.columns([1, 1], gap="large")
+    col1, col2 = st.columns([1, 2], gap="large")
     with col1:
         st.subheader('Monthly Income')
         df_in_editor = income_data_editor()
-        print(df_in_editor)
+        
     #****************************expenses ********************************************************************************
     
     with col2:
