@@ -7,8 +7,8 @@ from streamlit_option_menu import option_menu
 #########################horizontal bar#########################
 def horizontal_menu():
     # Configuration for static values
-    MENU_OPTIONS = ["Ads Budget", "Automation Agent", 'Settings']
-    MENU_ICONS = ['speedometer2', "filetype-ai", 'gear']
+    MENU_OPTIONS = ['Ads Budget', 'Trendy Agent','Research Agent','Automation Agent(coming soon)', 'Settings']
+    MENU_ICONS = ['speedometer2', 'graph-up-arrow','globe' ,'arrow-repeat','gear']
     MENU_STYLES = {
         "container": {
             "padding": "10px!important",

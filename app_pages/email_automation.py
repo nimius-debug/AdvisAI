@@ -28,12 +28,12 @@ def email_automation():
     
     col1, col2 = st.columns(2, gap="large")
     with col1:
-        st.markdown("##### Top real-time searches on X(Twitter))")
+        st.markdown("##### Top real-time searches on X(Twitter)) :blue[Updated every 2 hours]")
         st.dataframe(xtrends, use_container_width=True, height=600)
 
     # Display trends for the current page
     with col2:
-        st.markdown("##### Top real-time searches on Google Trends (US)")
+        st.markdown("##### Top real-time searches on Google Trends (US) :blue[Updated every 30 minutes]")
         cards_per_page = 8
         total_pages = (
             int(len(trends) / cards_per_page) if int(len(trends) / cards_per_page) > 0 else 1
@@ -60,19 +60,6 @@ def email_automation():
     if ai_analize:
         list_xtrends = xtrends.values.tolist()
         AI_analyze_trends(list_xtrends, trends)
+
     
-    st.divider()
     
-    st.header("Integration")
-    coln1, coln2 = st.columns(2)
-    with coln1:
-        with st.expander(":email: GetResponse"):
-            GET_RESPONSE = st.text_input("Enter your GETRESPONSE API KEY here: ", value="Coming Soon")
-            # GR_key_message = "GetResponse key was accepted!"
-            # st.write(GR_key_message)
-    with coln2:
-        with st.expander(":brain: OpenAI"):
-            OPEN_AI = st.text_input("Enter your OPENAI API KEY here: ", value="Coming Soon")
-            openai.api_key = OPEN_AI
-        model_id = 'gpt-3.5-turbo'
-        #AI_key_message = "Open AI key was accepted!"
